@@ -26,7 +26,7 @@ const divstyle = {
     color: "gray",
   },
 };
-export default function imageShap() {
+export default function ImageShap() {
   return (
     <div style={divstyle.div}>
       <img src={logo} style={divstyle.img} alt="" />

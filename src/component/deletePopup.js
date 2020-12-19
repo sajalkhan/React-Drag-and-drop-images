@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function deletePopup({ selectedOption, item }) {
+export default function DeletePopup({ selectedOption, item }) {
   return (
     <div className="delete-modal">
       <div>

@@ -5,7 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import loading from "./assets/images/loader.gif";
 
 import ImageShape from "./component/imageShap";
-import "./assets/styles/App.css";
+import "./assets/styles/App.scss";
 
 import Column from "./component/column";
 import MoveLeftItems from "./component/move_left_items";

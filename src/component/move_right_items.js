@@ -11,6 +11,7 @@ import {
 } from "../redux/column_2/right_column_action";
 
 import DeletePopup from "../component/deletePopup";
+import SettingsPopup from "../component/settingsPopup";
 
 const MovableItem = ({
   name,
@@ -23,6 +24,7 @@ const MovableItem = ({
   const ref = useRef(null);
 
   const [DeleteImg, setDeleteImg] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
 
   let dragIndex = null;
   let hoverIndex = null;
@@ -104,21 +106,33 @@ const MovableItem = ({
           src={image}
           alt=""
           className="movable-item-img"
-          onClick={() => setDeleteImg(false)}
+          onClick={() => {
+            setDeleteImg(false);
+            setOpenSettings(false);
+          }}
         />
-        <div className="img-div">
+
+        <span className="img-div" target="img">
           <i
             className="fa fa-cog fa-xs btn-settings"
-            onClick={() => alert("wow")}
+            onClick={() => {
+              setOpenSettings(!openSettings);
+              setDeleteImg(false);
+            }}
           />
           <i
             className="fa fa-trash fa-xs btn-settings"
-            onClick={() => setDeleteImg(!DeleteImg)}
+            onClick={() => {
+              setDeleteImg(!DeleteImg);
+              setOpenSettings(false);
+            }}
           />
-        </div>
+        </span>
+
         {DeleteImg ? (
           <DeletePopup item={index} selectedOption={handleDelete} />
         ) : null}
+        {openSettings ? <SettingsPopup img={image} /> : null}
       </div>
     </div>
   );

@@ -1,0 +1,238 @@
+@font-face {
+    font-family: 'DavidLibre';
+    src: local('DavidLibre'), url(../fonts/DavidLibre-Regular.ttf) format('truetype');
+}
+
+p {
+    font-family: DavidLibre, serif;
+    font-weight: bold;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F4F7FA;
+}
+
+@mixin  settingsToolbar {
+    display: inline;
+    top:0;
+    left: 0;
+    font-size: 20px;
+    width: 70px;
+    height: 25px;
+    margin:10px;
+    color: black;
+    z-index: 2;
+    border-radius: 50px;
+    background-color: #6A6F73;
+}
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.column {
+    height: max-content;
+    min-height: 100px;
+    /* width: 160px; */
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    border: 2px solid #FFFFFF; /* Параметры границы */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.do-it-column {
+    background-color: #FFFFFF;
+    width: 250px;
+    height: 92vh;
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
+
+.in-progress-column {
+    background-color: #FFFFFF;
+    width: 100vw;
+    height: 92vh;
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
+
+
+.movable-item {
+    border-radius: 5px;
+    background-color: #fafdff;
+    height: 100px;
+    width: 140px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+.movable-item-img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.img-div {
+    display: none;
+    position:absolute;
+
+    &:hover {
+        @include settingsToolbar;
+    }
+}
+
+.movable-item-img:hover > span {
+    @include settingsToolbar;
+}
+
+.btn-settings {
+    margin-left: 10px;
+    margin-right: 5px;
+    background-color: transparent;
+    color: white;
+}
+
+.loaderStyle {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10%;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-modal {
+    @include flexColumn;
+    z-index: 2;
+    width: 182px;
+    height: 100px;
+    background-color: #F7F9F9;
+    position: relative;
+    top: -80%;
+    left: 2%;
+    cursor:default;
+    border-radius: 10px;
+
+    &:hover + .img-div {
+        @include settingsToolbar;
+    }
+}
+
+.settings-modal {
+   @include flexColumn;
+    z-index: 2;
+    width: 190px;
+    height: 230px;
+    background-color: #F7F9F9;
+    position: relative;
+    top: -82%;
+    left: -30%;
+    cursor:default;
+    border-radius: 5px;
+
+    .settings-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        border-bottom: 2px solid #DBDCDD;
+        font-weight: initial; 
+        width: 160px;
+        height: 30px;
+        position:absolute;
+        top: 0;
+        left: 2;
+        margin-top: 10px;
+        background-color: transparent;
+
+        p {
+            color: black;
+            font-weight: 100;
+        }
+
+        p:hover {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    .settings-div {
+        width: 160px;
+        height: 135px;
+        margin-top: 35px;
+        margin-bottom: 10px;
+        background-color: #EEF3F4;
+
+        .img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .settings-chooseimg {
+        width: 160px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        p {
+            font-weight: 100;
+            color: #68C2F5;
+        }
+
+        p:hover {
+            cursor: pointer;
+            color: #75E4F3;
+        }
+    }
+
+    &:hover + .img-div {
+        @include settingsToolbar;
+    }
+}
+
+.delete_modal_content {
+    width: 182px;
+    display: flex;
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .btn-yes {
+        border-radius: 5px;
+        background-color: #52BE80;
+        width: 50px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .btn-no {
+        border-radius: 5px;
+        background-color: #FF5733;
+        width: 50px;
+        height: 30px;
+        cursor: pointer;
+    }
+}
