@@ -34,7 +34,7 @@ const Reducer = (state = initialState, actions) => {
     case REMOVE_RIGHT_CARD: {
       return {
         ...state,
-        images: state.images.filter((item, indx) => indx !== payload.dragIndex),
+        images: state.images.filter((item, indx) => indx !== payload),
       };
     }
     default:

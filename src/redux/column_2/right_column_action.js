@@ -9,11 +9,11 @@ export const moveRightCard = (dragIndex, hoverIndex) => async (dispatch) => {
 };
 
 // Remove image
-export const rmoveRightCard = (dragIndex, hoverIndex) => async (dispatch) => {
+export const rmoveRightCard = (Index) => async (dispatch) => {
   console.log("remove");
   dispatch({
     type: REMOVE_RIGHT_CARD,
-    payload: { dragIndex, hoverIndex },
+    payload: Index,
   });
 };
 

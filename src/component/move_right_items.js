@@ -1,14 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 //Redux connect
 import { connect } from "react-redux";
-import { rmoveleftCard } from "../redux/column_1/left_column_action";
 
 import {
   moveRightCard,
   addRightCard,
+  rmoveRightCard,
 } from "../redux/column_2/right_column_action";
+
+import DeletePopup from "../component/deletePopup";
 
 const MovableItem = ({
   name,
@@ -16,8 +18,11 @@ const MovableItem = ({
   image,
   currentColumnName,
   moveRightCard,
+  rmoveRightCard,
 }) => {
   const ref = useRef(null);
+
+  const [DeleteImg, setDeleteImg] = useState(false);
 
   let dragIndex = null;
   let hoverIndex = null;
@@ -88,17 +93,32 @@ const MovableItem = ({
 
   drag(drop(ref));
 
+  const handleDelete = (confirm, itemIndx) => {
+    setDeleteImg(false);
+    if (confirm) rmoveRightCard(itemIndx);
+  };
   return (
     <div ref={ref} className="movable-item" style={{ opacity, margin: 70 }}>
       <div className="movable-item-img">
-        <img src={image} alt="" className="movable-item-img" />
+        <img
+          src={image}
+          alt=""
+          className="movable-item-img"
+          onClick={() => setDeleteImg(false)}
+        />
         <div className="img-div">
           <i
             className="fa fa-cog fa-xs btn-settings"
             onClick={() => alert("wow")}
           />
-          <i className="fa fa-trash fa-xs btn-settings" />
+          <i
+            className="fa fa-trash fa-xs btn-settings"
+            onClick={() => setDeleteImg(!DeleteImg)}
+          />
         </div>
+        {DeleteImg ? (
+          <DeletePopup item={index} selectedOption={handleDelete} />
+        ) : null}
       </div>
     </div>
   );
@@ -114,5 +134,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   addRightCard,
   moveRightCard,
-  rmoveleftCard,
+  rmoveRightCard,
 })(MovableItem);
