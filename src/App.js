@@ -90,3 +90,12 @@ export default connect(mapStateToProps, {
   moveleftCard,
   moveRightCard,
 })(App);
+
+/*-------------------------------------------------------------
+// Author: sohrab hossain
+// date: 12/20/2020
+
+---------------  React-DnD Learning Resource -------------------
+blog: https://medium.com/swlh/react-dnd-in-examples-ce509b25839d
+
+---------------------------------------------------------------*/
