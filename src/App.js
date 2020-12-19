@@ -25,12 +25,12 @@ const App = ({ loadData, load_left_column, load_right_column }) => {
 
   const returnItemsForLeftColumn = () => {
     return (
-      load_left_column.images &&
+      !load_left_column.loading &&
       load_left_column.images?.map((item, index) => (
         <MoveLeftItems
           key={item.char_id}
-          name={item.name}
           image={item.img}
+          id={item.char_id}
           currentColumnName={"Start"}
           index={index}
           moveleftCard={moveleftCard}
@@ -41,14 +41,15 @@ const App = ({ loadData, load_left_column, load_right_column }) => {
 
   const returnItemsForRightColumn = () => {
     return (
-      load_right_column.images &&
+      !load_right_column.loading &&
       load_right_column.images?.map((item, index) => (
         <MoveRightItems
           key={item.char_id}
-          name={item.name}
+          id={item.char_id}
           image={item.img}
           currentColumnName={"In Progress"}
           index={index}
+          item={item}
           moveRightCard={moveRightCard}
         />
       ))

@@ -14,7 +14,8 @@ import DeletePopup from "../component/deletePopup";
 import SettingsPopup from "../component/settingsPopup";
 
 const MovableItem = ({
-  name,
+  id,
+  item,
   index,
   image,
   currentColumnName,
@@ -63,7 +64,7 @@ const MovableItem = ({
   });
 
   const [{ isDragging }, drag] = useDrag({
-    item: { index, name, currentColumnName, type: "Our first type" },
+    item: { index, id, currentColumnName, type: "Our first type" },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       // const images = load_left_column.images.filter(
@@ -99,12 +100,18 @@ const MovableItem = ({
     setDeleteImg(false);
     if (confirm) rmoveRightCard(itemIndx);
   };
+
+  const imgStyle = {
+    filter: `sepia(${item.sepia}) grayscale(${item.grayscale}) blur(${item.blur}px) brightness(${item.brightness})`,
+  };
+
   return (
     <div ref={ref} className="movable-item" style={{ opacity, margin: 70 }}>
       <div className="movable-item-img">
         <img
           src={image}
           alt=""
+          style={imgStyle}
           className="movable-item-img"
           onClick={() => {
             setDeleteImg(false);
@@ -132,7 +139,7 @@ const MovableItem = ({
         {DeleteImg ? (
           <DeletePopup item={index} selectedOption={handleDelete} />
         ) : null}
-        {openSettings ? <SettingsPopup img={image} /> : null}
+        {openSettings ? <SettingsPopup item={item} indx={index} /> : null}
       </div>
     </div>
   );

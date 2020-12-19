@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-export default function SettingsPopup({ img }) {
+import FilterScreen from "../component/filterScreen";
+
+export default function SettingsPopup({ item, indx }) {
   const [OpenImg, setOpenImg] = useState(true);
-  const [Filter, setFilter] = useState(false);
+  const [, setFilter] = useState(false);
 
   const handleImgtab = () => {
     setOpenImg(true);
@@ -12,6 +14,10 @@ export default function SettingsPopup({ img }) {
   const handleFiltertab = () => {
     setOpenImg(false);
     setFilter(true);
+  };
+
+  const imgStyle = {
+    filter: `sepia(${item.sepia}) grayscale(${item.grayscale}) blur(${item.blur}px) brightness(${item.brightness})`,
   };
 
   return (
@@ -24,13 +30,16 @@ export default function SettingsPopup({ img }) {
           Filter
         </p>
       </div>
-      <div className="settings-div">
-        {OpenImg ? <img src={img} className="img" /> : null}
-        {Filter ? <div>filter screen</div> : null}
-      </div>
-      <div className="settings-chooseimg">
-        <p>Choose Photo</p>
-      </div>
+      {OpenImg ? (
+        <div className="settings-div">
+          <img src={item.img} style={imgStyle} className="img" alt="" />
+          <div className="settings-chooseimg">
+            <p>Choose Photo</p>
+          </div>
+        </div>
+      ) : (
+        <FilterScreen item={item} indx={indx} />
+      )}
     </div>
   );
 }

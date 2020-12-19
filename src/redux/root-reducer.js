@@ -9,7 +9,7 @@ import LoadrightColumnImageState from "./column_2/right_column_reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["LoadleftColumnImageState", "LoadrightColumnImageState"], // we can add more state to our local storage
+  whitelist: ["LoadrightColumnImageState"], // we can add more state to our local storage
 };
 
 const rootReducer = combineReducers({

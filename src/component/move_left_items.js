@@ -11,7 +11,7 @@ import {
 import { addRightCard } from "../redux/column_2/right_column_action";
 
 const MovableItem = ({
-  name,
+  id,
   index,
   image,
   currentColumnName,
@@ -59,11 +59,11 @@ const MovableItem = ({
   });
 
   const [{ isDragging }, drag] = useDrag({
-    item: { index, name, currentColumnName, type: "Our first type" },
+    item: { index, id, currentColumnName, type: "Our first type" },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       const images = load_left_column.images.filter(
-        (img) => img.name === item.name
+        (img) => img.char_id === item.id
       );
 
       if (dropResult) {

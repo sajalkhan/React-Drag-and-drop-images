@@ -1,4 +1,9 @@
-import { ADD_RIGHT_CARD, MOVE_RIGHT_CARD, REMOVE_RIGHT_CARD } from "./type";
+import {
+  ADD_RIGHT_CARD,
+  MOVE_RIGHT_CARD,
+  REMOVE_RIGHT_CARD,
+  FILTER_IMAGE,
+} from "./type";
 
 // move image
 export const moveRightCard = (dragIndex, hoverIndex) => async (dispatch) => {
@@ -19,8 +24,35 @@ export const rmoveRightCard = (Index) => async (dispatch) => {
 
 // Add image
 export const addRightCard = (item) => async (dispatch) => {
+  let data = item[0];
+  data["sepia"] = 0;
+  data["brightness"] = 1;
+  data["blur"] = 0;
+  data["grayscale"] = 0;
+
   dispatch({
     type: ADD_RIGHT_CARD,
-    payload: item,
+    payload: data,
+  });
+};
+
+//Add filter
+export const addFilter = (
+  item,
+  indx,
+  blur,
+  brightness,
+  sepia,
+  grayscale
+) => async (dispatch) => {
+  let data = item;
+  data.blur = +blur;
+  data.brightness = +brightness;
+  data.sepia = +sepia;
+  data.grayscale = +grayscale;
+
+  dispatch({
+    type: FILTER_IMAGE,
+    payload: { data, indx },
   });
 };

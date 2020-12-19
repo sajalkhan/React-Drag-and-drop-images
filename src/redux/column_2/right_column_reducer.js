@@ -1,9 +1,15 @@
-import { ADD_RIGHT_CARD, MOVE_RIGHT_CARD, REMOVE_RIGHT_CARD } from "./type";
+import {
+  ADD_RIGHT_CARD,
+  MOVE_RIGHT_CARD,
+  REMOVE_RIGHT_CARD,
+  FILTER_IMAGE,
+} from "./type";
+
 import { addItemToCart } from "./cart.util";
 
 const initialState = {
-  loading: true,
   images: [],
+  loading: true,
 };
 
 const Reducer = (state = initialState, actions) => {
@@ -36,6 +42,22 @@ const Reducer = (state = initialState, actions) => {
         ...state,
         images: state.images.filter((item, indx) => indx !== payload),
       };
+    }
+    case FILTER_IMAGE: {
+      const { data, indx } = payload;
+
+      let Allimages = { ...state };
+      let item = {
+        ...state.images[indx],
+        blur: data.blur,
+        brightness: data.brightness,
+        sepia: data.sepia,
+        grayscale: data.grayscale,
+      };
+
+      Allimages.images[indx] = item;
+
+      return { ...state, Allimages };
     }
     default:
       return state;
