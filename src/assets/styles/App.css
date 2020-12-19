@@ -76,11 +76,11 @@ p {
 
 .img-div {
     display: none;
+    position:absolute;
 }
 
 .movable-item-img:hover + .img-div {
     display: inline;
-    position:absolute;
     top:0;
     left: 0;
     font-size: 20px;
@@ -120,10 +120,11 @@ p {
     width: 182px;
     height: 100px;
     background-color: #F7F9F9;
-    position: absolute;
-    top: 55px;
-    left: auto;
+    position: relative;
+    top: -80%;
+    left: 2%;
     cursor:default;
+    border-radius: 10px;
 }
 
 .delete_modal_content {
