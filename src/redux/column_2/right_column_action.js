@@ -3,6 +3,7 @@ import {
   MOVE_RIGHT_CARD,
   REMOVE_RIGHT_CARD,
   FILTER_IMAGE,
+  UPDATE_IMAGE,
 } from "./type";
 
 // move image
@@ -54,5 +55,14 @@ export const addFilter = (
   dispatch({
     type: FILTER_IMAGE,
     payload: { data, indx },
+  });
+};
+
+//update image
+export const updateImage = (image, indx) => async (dispatch) => {
+  let img = image[0].src;
+  dispatch({
+    type: UPDATE_IMAGE,
+    payload: { img, indx },
   });
 };

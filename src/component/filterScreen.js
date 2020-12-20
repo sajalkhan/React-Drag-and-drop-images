@@ -4,6 +4,7 @@ import InputRange from "../component/inputRange";
 //Redux connect
 import { connect } from "react-redux";
 import { addFilter } from "../redux/column_2/right_column_action";
+
 const FilterScreen = ({ item, indx, addFilter }) => {
   const [blur, setBlur] = useState(item.blur);
   const [brightness, setBrightness] = useState(item.brightness);

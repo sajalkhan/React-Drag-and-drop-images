@@ -39,20 +39,6 @@ const MovableItem = ({
         return;
       }
 
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
-
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-
       moveleftCard(dragIndex, hoverIndex);
       item.index = hoverIndex;
     },
@@ -73,9 +59,6 @@ const MovableItem = ({
           case "In Progress":
             rmoveleftCard(images);
             addRightCard(images);
-            break;
-          case "Start":
-            // addCardHandler(item, "Alive");
             break;
           default:
             break;

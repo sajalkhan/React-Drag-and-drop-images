@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import FilterScreen from "../component/filterScreen";
+import Dropzone from "../component/Dropzone";
+import DropzoneImage from "../component/DropzoneImg";
 
-export default function SettingsPopup({ item, indx }) {
+//Redux connect
+import { connect } from "react-redux";
+import { updateImage } from "../redux/column_2/right_column_action";
+
+const SettingsPopup = ({ item, indx, updateImage }) => {
   const [OpenImg, setOpenImg] = useState(true);
+  const [images, setImages] = useState([]);
   const [, setFilter] = useState(false);
+
+  useEffect(() => {
+    if (images && images.length) updateImage(images, indx);
+  }, [updateImage, images, indx]);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setImages(() => [{ src: e.target.result }]);
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
 
   const handleImgtab = () => {
     setOpenImg(true);
@@ -32,14 +54,18 @@ export default function SettingsPopup({ item, indx }) {
       </div>
       {OpenImg ? (
         <div className="settings-div">
-          <img src={item.img} style={imgStyle} className="img" alt="" />
-          <div className="settings-chooseimg">
-            <p>Choose Photo</p>
-          </div>
+          {images && images.length ? (
+            <DropzoneImage images={images} style={imgStyle} />
+          ) : (
+            <img src={item.img} style={imgStyle} className="img" alt="" />
+          )}
+          <Dropzone onDrop={onDrop} accept={"image/*"} />
         </div>
       ) : (
         <FilterScreen item={item} indx={indx} />
       )}
     </div>
   );
-}
+};
+
+export default connect(null, { updateImage })(SettingsPopup);

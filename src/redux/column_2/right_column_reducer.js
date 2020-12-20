@@ -3,6 +3,7 @@ import {
   MOVE_RIGHT_CARD,
   REMOVE_RIGHT_CARD,
   FILTER_IMAGE,
+  UPDATE_IMAGE,
 } from "./type";
 
 import { addItemToCart } from "./cart.util";
@@ -57,6 +58,19 @@ const Reducer = (state = initialState, actions) => {
 
       Allimages.images[indx] = item;
 
+      return Allimages;
+    }
+
+    case UPDATE_IMAGE: {
+      const { img, indx } = payload;
+
+      let Allimages = { ...state };
+      let data = {
+        ...state.images[indx],
+        img: img,
+      };
+
+      Allimages.images[indx] = data;
       return { ...state, Allimages };
     }
     default:

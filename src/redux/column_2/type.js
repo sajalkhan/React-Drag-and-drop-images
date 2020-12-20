@@ -4,3 +4,4 @@ export const REMOVE_RIGHT_CARD = "REMOVE_RIGHT_CARD";
 export const MOVE_RIGHT_CARD = "MOVE_RIGHT_CARD";
 export const ADD_RIGHT_CARD = "ADD_RIGHT_CARD";
 export const FILTER_IMAGE = "FILTER_IMAGE";
+export const UPDATE_IMAGE = "UPDATE_IMAGE";

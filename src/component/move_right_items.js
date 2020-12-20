@@ -44,20 +44,6 @@ const MovableItem = ({
         return;
       }
 
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
-
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-
       moveRightCard(dragIndex, hoverIndex);
       item.index = hoverIndex;
     },
@@ -65,28 +51,6 @@ const MovableItem = ({
 
   const [{ isDragging }, drag] = useDrag({
     item: { index, id, currentColumnName, type: "Our first type" },
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      // const images = load_left_column.images.filter(
-      //   (img) => img.name === item.name
-      // );
-
-      if (dropResult) {
-        const { name } = dropResult;
-
-        switch (name) {
-          case "In Progress":
-            // rmoveleftCard(images);
-            // addRightCard(images);
-            break;
-          case "Start":
-            // addCardHandler(item, "Alive");
-            break;
-          default:
-            break;
-        }
-      }
-    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
