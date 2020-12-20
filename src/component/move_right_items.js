@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 //Redux connect
@@ -12,6 +12,26 @@ import {
 
 import DeletePopup from "../component/deletePopup";
 import SettingsPopup from "../component/settingsPopup";
+
+let useClickOutside = (handler) => {
+  let domNode = useRef();
+
+  useEffect(() => {
+    let maybeHandler = (event) => {
+      if (!domNode.current.contains(event.target)) {
+        handler();
+      }
+    };
+
+    document.addEventListener("mousedown", maybeHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", maybeHandler);
+    };
+  });
+
+  return domNode;
+};
 
 const MovableItem = ({
   id,
@@ -69,9 +89,14 @@ const MovableItem = ({
     filter: `sepia(${item.sepia}) grayscale(${item.grayscale}) blur(${item.blur}px) brightness(${item.brightness})`,
   };
 
+  let domNode = useClickOutside(() => {
+    setDeleteImg(false);
+    setOpenSettings(false);
+  });
+
   return (
     <div ref={ref} className="movable-item" style={{ opacity, margin: 70 }}>
-      <div className="movable-item-img">
+      <div ref={domNode} className="movable-item-img">
         <img
           src={image}
           alt=""
