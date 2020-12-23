@@ -1,3 +1,21 @@
+# Live porject url: https://react-dnd-by-sohrab.web.app/
+
+##Project Overview
+
+![image](https://user-images.githubusercontent.com/18021576/102738574-b82a9d80-4374-11eb-87b5-e13b9cae3744.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738648-f627c180-4374-11eb-9a34-fc664af3f070.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738449-5d914180-4374-11eb-8d7d-561bf588b4d9.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738724-2a9b7d80-4375-11eb-879f-17041f2ccfa0.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738797-633b5700-4375-11eb-8a9a-c99dca2e5a05.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738891-a4336b80-4375-11eb-8e22-dafba548fe5d.png)
+
+![image](https://user-images.githubusercontent.com/18021576/102738961-ef4d7e80-4375-11eb-8d95-4bd878220726.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -6,6 +24,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn install`
 ### `yarn start`
 
 Runs the app in the development mode.\
