@@ -1,5 +1,9 @@
-import reducer from "./left_column_reducer";
-import { LOAD_SUCCESS, MOVE_LEFT_CARD, REMOVE_LEFT_CARD } from "./type";
+import reducer from "../redux/column_1/left_column_reducer";
+import {
+  LOAD_SUCCESS,
+  MOVE_LEFT_CARD,
+  REMOVE_LEFT_CARD,
+} from "../redux/column_1/type";
 
 describe(`test left column `, () => {
   const data = [
